@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container-fluid row mt-5">
+    <div class="col-4">
+        <div><img src="{{ product.imageURL }}" alt="..." width="80%" class="rounded"></div>
+    </div>
+    <div class="col-6 p-5 bg-warning" style="border: 1px solid; border-radius: 6px; margin-bottom: 100px;">
+        <p class="detailp">Category : {{ product.category }}</p>
+        <p class="detailp">Brand : {{ product.brand }}</p>
+        <p class="detailp">Description : {{ product.desc }}</p>
+        <p class="detailp">Price : ${{ product.price }}</p>
+        <form action="{% url 'mycart' product.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Add to cart" class="btn btn-success mt-4">
+        </form>
+    </div>
+</div>
+{% endblock %}

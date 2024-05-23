@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container-fluid row" style="margin-bottom: 100px;">
+    <div class="col-6 row mt-5">
+        {% for i in obj %}
+        <div class="row" style="border: 2px solid rgb(208, 181, 6); padding: 10px; margin: 10px; border-radius: 8px; width: 100%;">
+            <div class="col-6">
+                <img src="{{ i.product.imageURL }}" alt="..." width="80%" class="rounded">
+            </div>
+            <div class="col-4">
+                <p class="detailp text-white">Brand : {{ i.product.brand }}</p>
+                <p class="detailp text-white">Description : {{ i.product.desc }}</p>
+                <p class="detailp text-white">Price : ${{ i.product.price }}</p>
+                <a href="{% url 'delete' i.id %}"><button type="button" class="btn btn-warning">Remove</button></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-6 mt-5 p-5">
+<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+   Confirm !
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header bg-warning">
+          <h1 class="modal-title fs-5 " id="staticBackdropLabel">Buy Items</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body bg-info">
+          <p class="detailp">number of items : {{ items_taken }} </p>
+          <p class="detailp">Total price : {{ cost }} </p>
+        </div>
+        <div class="modal-footer bg-info">
+          <button type="button" class="btn btn-warning">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        </div>
+    </div>    
+</div>
+{% endblock %}
